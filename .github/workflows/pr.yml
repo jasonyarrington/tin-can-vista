@@ -21,12 +21,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: shivammathur/setup-perl@v2
+      - uses: shogo82148/actions-setup-perl@v1
         with:
           perl-version: "5.34"
           install-modules-with: cpanm
-          install-modules-from-cpanfile: true
-          enable-modules-cache: true
+
+      - name: Install Perl dependencies
+        run: cpanm --notest --installdeps .
 
       - name: Build site
         run: |
