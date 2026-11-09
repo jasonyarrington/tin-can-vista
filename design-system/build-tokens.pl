@@ -15,7 +15,7 @@ my ($first, @rest) = @themes;
 
 sub color_vars {
     my ($theme) = @_;
-    return join '', map {
+    return "  color-scheme: $theme;\n" . join '', map {
         my $v = $_->{value};
         $v = $v->{$theme} // $v->{$first} if ref $v;
         "  --$_->{name}: $v;\n";

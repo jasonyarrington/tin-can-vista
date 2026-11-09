@@ -1,3 +1,3 @@
-A small uppercase label that files a post under a topic.
+A small uppercase outlined label that files a post under a topic.
 
-Rust (`aw-tag`) is the default, sage (`aw-tag--sage`) suits outdoors topics and sky (`aw-tag--sky`) suits general notes. Each pairs a tint background with its deep text color, so text stays readable in both themes. Show one to three tags per post, never more.
+Tags have no fill, only a 1px outline and text in the same deep color, so they read on the page and on every tinted card panel. Rust (`aw-tag`) is the default, with `aw-tag--sage`, `aw-tag--sky` and `aw-tag--gold` as alternatives. Inside a card, a tag takes the card's color automatically through `--tag-ink`. Show one to three tags per post, never more.

@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/css/tokens.css">
 <link rel="stylesheet" href="/css/bundle.css">
 <link rel="stylesheet" href="/css/site.css">
+<script src="/js/theme.js"></script>
 </head>
 <body>
 <header class="aw-header">
@@ -16,14 +17,21 @@
     <nav class="aw-header__nav">
       <a href="/"[% IF section == 'posts' %] aria-current="page"[% END %]>Posts</a>
       <a href="/about/"[% IF section == 'about' %] aria-current="page"[% END %]>About</a>
+      <div class="aw-theme" role="group" aria-label="Color theme" hidden>
+        <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+        <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+        <button type="button" data-theme-choice="system" aria-pressed="true">System</button>
+      </div>
     </nav>
   </div>
 </header>
 <main class="page">
 [% content %]
 </main>
-<footer class="site-footer">
-  <p>[% site.title | html %] / [% site.author | html %] / [% year %]</p>
+<footer class="aw-footer">
+  <div class="aw-footer__inner">
+    <p>[% site.title | html %] / [% site.author | html %] / [% year %]</p>
+  </div>
 </footer>
 </body>
 </html>

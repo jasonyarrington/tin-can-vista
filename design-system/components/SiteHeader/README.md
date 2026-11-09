@@ -1,3 +1,3 @@
-The top of every page: the typeset site name and two or three nav links, over a single `hairline`.
+The top and bottom of every page: a solid rust header band with the typeset site name, two or three nav links and the Light / Dark / System switcher, and a solid steel footer band.
 
-The name is set in the stencil display face, with no logo mark. Mark the current page with `aria-current="page"`, which turns it `action` and underlines it. Keep nav to three links so it fits one line on a phone.
+The name is set in the stencil display face, with no logo mark. Text on the band is `on-band-rust`; text on the footer is `on-band-steel`. Mark the current page with `aria-current="page"`, which underlines it. The switcher (`aw-theme`) is three buttons with `aria-pressed`; the site's script sets `data-theme` on `<html>` for Light and Dark, and removes it for System so the OS setting decides. Keep nav to three links so the header wraps to at most two rows on a phone.

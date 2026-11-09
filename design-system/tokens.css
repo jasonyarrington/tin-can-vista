@@ -2,64 +2,88 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;1,400&family=Big+Shoulders+Stencil+Display:wght@700;800&display=swap');
 
 :root, [data-theme="light"] {
-  --surface: #f5f0e9;
-  --surface-raised: #ebe3d8;
-  --hairline: #d8ccbc;
-  --ink: #231d1a;
-  --ink-muted: #655a51;
+  color-scheme: light;
+  --surface: #f4f8fc;
+  --surface-raised: #e6eef7;
+  --hairline: #cdd9e6;
+  --ink: #1c1f23;
+  --ink-muted: #55606b;
   --action: #a9441a;
-  --on-action: #f5f0e9;
+  --on-action: #ffffff;
   --rust: #b5532a;
   --rust-deep: #7a3b1e;
-  --rust-tint: #f0dccb;
-  --steel: #3a3430;
+  --rust-tint: #f4ddd0;
+  --steel: #3a3f45;
   --gold: #d9a15f;
+  --gold-deep: #6b4a12;
+  --gold-tint: #f3e2c3;
   --sage: #8ca34e;
   --pine: #3f5a22;
   --sage-tint: #e4ead0;
   --sky: #5f93d0;
+  --sky-deep: #1f4f86;
   --sky-tint: #dce7f4;
+  --band-rust: #b5532a;
+  --on-band-rust: #ffffff;
+  --band-steel: #3a3f45;
+  --on-band-steel: #eceae6;
 }
 
 [data-theme="dark"] {
-  --surface: #1c1715;
-  --surface-raised: #27201d;
-  --hairline: #3b312c;
-  --ink: #f1e8de;
-  --ink-muted: #b5a698;
-  --action: #e8905c;
-  --on-action: #1c1715;
+  color-scheme: dark;
+  --surface: #1e2022;
+  --surface-raised: #2a2d30;
+  --hairline: #3d4145;
+  --ink: #eceae6;
+  --ink-muted: #aeb2b5;
+  --action: #e8814a;
+  --on-action: #1e2022;
   --rust: #c25e30;
-  --rust-deep: #e8a57a;
-  --rust-tint: #3a2418;
-  --steel: #6a5e55;
+  --rust-deep: #f0a77d;
+  --rust-tint: #3a2519;
+  --steel: #7b838a;
   --gold: #c48e4e;
+  --gold-deep: #e0b878;
+  --gold-tint: #3a2f1a;
   --sage: #8ca34e;
   --pine: #b2cc85;
-  --sage-tint: #263020;
+  --sage-tint: #26311f;
   --sky: #5f93d0;
-  --sky-tint: #22303f;
+  --sky-deep: #8db8ea;
+  --sky-tint: #1f2f40;
+  --band-rust: #a9441a;
+  --on-band-rust: #ffffff;
+  --band-steel: #15171a;
+  --on-band-steel: #eceae6;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --surface: #1c1715;
-    --surface-raised: #27201d;
-    --hairline: #3b312c;
-    --ink: #f1e8de;
-    --ink-muted: #b5a698;
-    --action: #e8905c;
-    --on-action: #1c1715;
+    color-scheme: dark;
+    --surface: #1e2022;
+    --surface-raised: #2a2d30;
+    --hairline: #3d4145;
+    --ink: #eceae6;
+    --ink-muted: #aeb2b5;
+    --action: #e8814a;
+    --on-action: #1e2022;
     --rust: #c25e30;
-    --rust-deep: #e8a57a;
-    --rust-tint: #3a2418;
-    --steel: #6a5e55;
+    --rust-deep: #f0a77d;
+    --rust-tint: #3a2519;
+    --steel: #7b838a;
     --gold: #c48e4e;
+    --gold-deep: #e0b878;
+    --gold-tint: #3a2f1a;
     --sage: #8ca34e;
     --pine: #b2cc85;
-    --sage-tint: #263020;
+    --sage-tint: #26311f;
     --sky: #5f93d0;
-    --sky-tint: #22303f;
+    --sky-deep: #8db8ea;
+    --sky-tint: #1f2f40;
+    --band-rust: #a9441a;
+    --on-band-rust: #ffffff;
+    --band-steel: #15171a;
+    --on-band-steel: #eceae6;
   }
 }
 

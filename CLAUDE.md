@@ -8,7 +8,7 @@ A personal blog. Posts are written in Markdown, built into a static site by a Pe
 - `pages/*.md`: standalone pages (About, 404). Front matter: `title`, optional `section`, optional `path`.
 - `static/`: files copied as-is into the site, such as `static/images/`.
 - `site.yml`: site title, tagline and author.
-- `site/templates/*.tt`: Template Toolkit templates. `site/static/css/site.css`: page layout CSS.
+- `site/templates/*.tt`: Template Toolkit templates. `site/static/css/site.css`: page layout CSS. `site/static/js/theme.js`: theme switcher.
 - `bin/build.pl`: the generator. Reads Markdown with Markdown::Perl, renders templates, writes `output/`.
 - `design-system/`: the design system. `tokens.json` is the source; `tokens.css` is generated.
 - `infra/`: Terraform for the GCP project, Firebase Hosting and keyless GitHub deploy access. See `infra/README.md`.
@@ -27,7 +27,7 @@ A personal blog. Posts are written in Markdown, built into a static site by a Pe
 Read `design-system/README.md` first. It is published as a private artifact at https://claude.ai/artifact/WRGz7BAgvBJfqh6UaAiPb3.
 
 - Use `design-system/tokens.css` for all colors, fonts, spacing and radii, as CSS variables. After editing `design-system/tokens.json`, run `perl design-system/build-tokens.pl`; never edit `tokens.css` by hand.
-- Use the classes in `design-system/components/bundle.css`: `aw-btn`, `aw-tag`, `aw-card`, `aw-header`, `aw-prose`. Each component's `README.md` and `preview.html` show the markup.
+- Use the classes in `design-system/components/bundle.css`: `aw-btn`, `aw-tag`, `aw-card`, `aw-header`, `aw-theme`, `aw-footer`, `aw-prose`. Each component's `README.md` and `preview.html` show the markup.
 - Page layout that the design system does not cover goes in `site/static/css/site.css`, using tokens only.
 
 Rules:
@@ -38,7 +38,8 @@ Rules:
 - `display`, `h1` and `h2` use the stencil face; everything else uses Archivo.
 - Photos go inside articles as a Markdown image on its own line, with the title text as the caption: `![alt](/images/x.jpg "Caption")`. The generator turns it into a `figure` with a `figcaption`. No frame, overlay or filter.
 - Links and buttons use the `action` color. Never use `rust`, `gold`, `sage` or `sky` for small text.
-- Light and dark themes both work; `tokens.css` follows the OS setting.
+- Two themes: *Sky and granite* (light) and *Steel and rust* (dark). Both must work. The Light / Dark / System switcher is `site/static/js/theme.js`; System removes `data-theme` so `tokens.css` follows the OS.
+- No tan or cream backgrounds. Color goes in a solid rust header band, tinted post cards (cycling rust, sky, sage, gold) with a solid top band, and a solid steel footer band. Tags are outlined.
 - Voice: first person, plain, sentence case, dates as `2026-11-09`, no emoji.
 
 ## Pipeline and hosting

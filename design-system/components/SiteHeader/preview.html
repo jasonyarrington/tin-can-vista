@@ -1,8 +1,8 @@
-<!-- @dsCard group="Layout" height=88 -->
+<!-- @dsCard group="Layout" height=220 -->
 <!DOCTYPE html>
 <html><head><meta charset="utf-8">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500&family=Big+Shoulders+Stencil+Display:wght@800&display=swap">
-<style>body{margin:0;background:var(--surface)}</style></head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Big+Shoulders+Stencil+Display:wght@800&display=swap">
+<style>body{margin:0;background:var(--surface);min-height:220px;display:flex;flex-direction:column;justify-content:space-between}</style></head>
 <body>
 <header class="aw-header">
   <div class="aw-header__row">
@@ -10,8 +10,15 @@
     <nav class="aw-header__nav">
       <a href="#" aria-current="page">Posts</a>
       <a href="#">About</a>
-      <a href="#">Subscribe</a>
+      <div class="aw-theme" role="group" aria-label="Color theme">
+        <button type="button" aria-pressed="false">Light</button>
+        <button type="button" aria-pressed="false">Dark</button>
+        <button type="button" aria-pressed="true">System</button>
+      </div>
     </nav>
   </div>
 </header>
+<footer class="aw-footer">
+  <div class="aw-footer__inner"><p>Tin Can Vista / Jason Yarrington / 2026</p></div>
+</footer>
 </body></html>

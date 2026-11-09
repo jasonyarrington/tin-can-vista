@@ -14,13 +14,18 @@ The site name is just typeset in the stencil display face. There is no logo mark
 
 ## Visual foundations
 
-- **Color.** Pale oxide-stone `surface` and near-black `ink` carry the page. The fence gives the accents: `rust`, `rust-deep` and `steel`. The photo gives `gold` (granite), `sage` and `pine` (cactus and pine) and `sky`. Use `rust`, `steel`, `gold`, `sage` and `sky` as flat blocks or rules, never as small text.
-- **Links and buttons** use `action`, a deep rust, because the bright `rust` fails contrast as text. Put `on-action` on top of it.
-- **Tinted tags** pair a `*-tint` background with its deep text color: `rust-tint` with `rust-deep`, `sage-tint` with `pine`.
+- **Two themes, one system.** *Sky and granite* (light) and *Steel and rust* (dark). A Light / Dark / System switcher chooses; System follows the OS.
+  - **Sky and granite:** a cool sky-white page, near-black ink, solid rust header, steel footer.
+  - **Steel and rust:** a weathered steel page, warm-white ink, the same rust header deepened, a near-black footer.
+- **No neutral tan or cream.** The page is cool, the color comes from the photo and the fence.
+- **Color goes in three places.** A solid rust header band, tinted post cards with a solid top band, and a solid steel footer band. Everything else stays quiet, so color reads as structure.
+- **Card colors.** Cards cycle through four families, each a solid band, a pale panel and a deep text color: rust, sky, sage and gold. Pair a panel only with `ink` and `ink-muted` text.
+- **Links and buttons** use `action`, a deep rust in the light theme and a bright rust orange in the dark theme. Put `on-action` on a filled button.
+- **Tags** are outlined, with no fill, in the deep color of their family: `rust-deep`, `pine`, `sky-deep` or `gold-deep`.
 - **Type.** Big Shoulders Stencil Display, a condensed stencil, for the site name and the big headings (`display`, `h1`, `h2`). Archivo for everything else: card titles, reading text, nav, tags, dates and captions. Keep stencil to short titles; it is loud. Body text is 16px on 26px leading, at about 65 characters per line.
 - **Shape.** Square corners (`radius-sm` is 0; `radius-md` and `radius-lg` are 2px and 4px). Separate things with `hairline` borders, never shadows or gradients.
 - **Images.** Photos sit in articles with a small caption underneath. No frames, overlays or filters.
-- **Themes.** Light is oxide-stone and near-black; dark is blackened steel with the rust lightened. Every pairing in the tokens' usage notes passes 4.5:1 in both.
+- **Contrast.** Every pairing named in the tokens' usage notes passes 4.5:1 in both themes. The bright fill colors (`rust`, `gold`, `sage`, `sky`) are for bands, blocks and top edges, never for small text.
 
 ## Iconography
 
@@ -28,4 +33,4 @@ None needed. Use words, and a plain `->` for "next". If you add icons later, dra
 
 ## Components
 
-Five small pieces, built as plain CSS classes in `components/bundle.css`: **Button**, **Tag**, **PostCard**, **SiteHeader** and **Prose** (the article body). Load `tokens.css` and then `bundle.css`, and use the class names shown in each component's guidelines.
+Five small pieces, built as plain CSS classes in `components/bundle.css`: **Button**, **Tag**, **PostCard**, **SiteHeader** (header, switcher and footer) and **Prose** (the article body). Load `tokens.css` and then `bundle.css`, and use the class names shown in each component's guidelines.

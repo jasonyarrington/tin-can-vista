@@ -1,7 +1,9 @@
+[% accents = ['rust', 'sky', 'sage', 'gold'] %]
 <ul class="post-list">
 [% FOREACH p IN posts %]
+  [% idx = loop.index % 4 %]
   <li>
-    <article class="aw-card">
+    <article class="aw-card aw-card--[% accents.$idx %]">
       <p class="aw-card__meta">[% p.date %] / [% p.reading_time %] min read</p>
       <h2 class="aw-card__title"><a href="[% p.url %]">[% p.title | html %]</a></h2>
       <p class="aw-card__excerpt">[% p.excerpt | html %]</p>
