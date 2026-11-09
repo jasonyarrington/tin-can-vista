@@ -1,0 +1,6 @@
+[% WRAPPER layout.tt section=page.section title=page.title %]
+<article class="aw-prose">
+  <h1>[% page.title | html %]</h1>
+  [% page.html %]
+</article>
+[% END %]

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[% IF title %][% title | html %] | [% END %][% site.title | html %]</title>
+<meta name="description" content="[% (description || site.tagline) | html %]">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/bundle.css">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+<header class="aw-header">
+  <div class="aw-header__row">
+    <a class="aw-header__name" href="/">[% site.title | html %]</a>
+    <nav class="aw-header__nav">
+      <a href="/"[% IF section == 'posts' %] aria-current="page"[% END %]>Posts</a>
+      <a href="/about/"[% IF section == 'about' %] aria-current="page"[% END %]>About</a>
+    </nav>
+  </div>
+</header>
+<main class="page">
+[% content %]
+</main>
+<footer class="site-footer">
+  <p>[% site.title | html %] / [% site.author | html %] / [% year %]</p>
+</footer>
+</body>
+</html>

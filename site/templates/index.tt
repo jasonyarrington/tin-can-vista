@@ -1,0 +1,4 @@
+[% WRAPPER layout.tt section='posts' %]
+<h1 class="display page-title">[% site.tagline | html %]</h1>
+[% INCLUDE post_list.tt %]
+[% END %]

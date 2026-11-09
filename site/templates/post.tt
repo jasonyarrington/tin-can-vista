@@ -1,0 +1,10 @@
+[% WRAPPER layout.tt section='posts' title=post.title description=post.excerpt %]
+<article class="aw-prose">
+  <h1>[% post.title | html %]</h1>
+  <p class="aw-prose__meta">[% post.date %] / [% post.reading_time %] min read</p>
+  [% post.html %]
+</article>
+<div class="tag-list tag-list--post">
+[% FOREACH t IN post.tags %]<a class="aw-tag" href="/tags/[% t.slug %]/">[% t.name | html %]</a>[% END %]
+</div>
+[% END %]

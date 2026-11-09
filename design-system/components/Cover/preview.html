@@ -1,0 +1,29 @@
+<!-- @dsCard height=300 -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400&family=Big+Shoulders+Stencil+Display:wght@800&display=swap">
+<style>
+html,body{margin:0}
+body{position:relative;width:960px;height:300px;overflow:hidden;background:var(--surface);color:var(--ink)}
+svg{position:absolute;left:0;top:0}
+.rust{fill:var(--rust)}.steel{fill:var(--steel)}.gold{fill:var(--gold)}.sage{fill:var(--sage)}.sky{fill:var(--sky)}
+.blk{rx:var(--radius-sm)}
+.rail{stroke:var(--surface);stroke-width:3;fill:none}
+h1{position:absolute;left:32px;bottom:60px;margin:0;width:440px;font:800 104px/.95 var(--font-display);color:var(--ink);letter-spacing:.01em}
+p{position:absolute;left:32px;bottom:28px;margin:0;width:440px;font:400 13px/20px var(--font-sans);color:var(--ink-muted)}
+</style></head><body>
+<svg width="960" height="300" viewBox="0 0 960 300" aria-hidden="true">
+<!-- blocks: rust 184x232, steel 288x236 (bleeds right/bottom), gold 184x60, sage 120x56, sky 160x56; gaps space-2 (8px)
+     arrangement: one tall slab with satellites, flush to the top and right edges
+     pattern: three horizontal fence rails cut through rust and steel at 48px pitch (6 x space-2), because the palette is rusted fence steel
+     radii: radius-sm (square) on every block -->
+<rect class="rust blk" x="480" y="0" width="184" height="232"/>
+<rect class="steel blk" x="672" y="64" width="288" height="236"/>
+<rect class="gold blk" x="480" y="240" width="184" height="60"/>
+<rect class="sage blk" x="672" y="0" width="120" height="56"/>
+<rect class="sky blk" x="800" y="0" width="160" height="56"/>
+<path class="rail" d="M480 96H664M480 144H664M480 192H664M672 96H960M672 144H960M672 192H960"/>
+</svg>
+<h1>Tin Can Vista</h1>
+<p>Field notes from the desert.</p>
+</body></html>

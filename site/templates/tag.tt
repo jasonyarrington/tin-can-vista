@@ -1,0 +1,4 @@
+[% WRAPPER layout.tt section='posts' title="Tagged ${tag.name}" %]
+<h1 class="h1 page-title page-title--small">Tagged [% tag.name | html %]</h1>
+[% INCLUDE post_list.tt %]
+[% END %]

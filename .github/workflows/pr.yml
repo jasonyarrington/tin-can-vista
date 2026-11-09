@@ -1,0 +1,54 @@
+name: Pull request
+
+# Builds the site on every pull request. For branches in this repository it also
+# publishes a temporary preview (7 days) and comments the link on the PR.
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  id-token: write
+  pull-requests: write
+
+concurrency:
+  group: pr-${{ github.event.number }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-perl@v2
+        with:
+          perl-version: "5.34"
+          install-modules-with: cpanm
+          install-modules-from-cpanfile: true
+          enable-modules-cache: true
+
+      - name: Build site
+        run: |
+          perl design-system/build-tokens.pl
+          perl bin/build.pl
+
+      # Forks cannot get Google credentials, so they only get the build check.
+      - name: Authenticate to Google Cloud
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+
+      - name: Deploy preview
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PROJECT: ${{ vars.GCP_PROJECT_ID }}
+          PR: ${{ github.event.number }}
+        run: |
+          npx --yes firebase-tools@13.29.1 hosting:channel:deploy "pr-${PR}" \
+            --project "${PROJECT}" --expires 7d --json --non-interactive > preview.json
+          URL=$(jq -r '[.result[].url][0]' preview.json)
+          gh pr comment "${PR}" --body "Preview: ${URL} (expires in 7 days)"
