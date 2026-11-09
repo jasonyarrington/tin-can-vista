@@ -29,7 +29,7 @@ The site name is just typeset in the stencil display face. There is no logo mark
 
 ## Iconography
 
-None needed. Use words, and a plain `->` for "next". If you add icons later, draw them as 1.5px outlines in `ink`.
+Almost none. Use words, and a plain `->` for "next". The one exception is the theme switcher: a sun, a moon and a monitor, drawn as 2-unit square-ended outlines on a 24 grid (1.5px at 16px) in `currentColor`. Any new icon should match that style.
 
 ## Components
 
