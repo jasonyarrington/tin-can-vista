@@ -39,6 +39,34 @@ resource "google_firebase_project" "blog" {
   depends_on = [google_project_service.enabled]
 }
 
+# --- Custom domain -----------------------------------------------------------
+# The domain is registered and has its DNS at GoDaddy. Terraform tells Firebase
+# about it and reports the DNS records to add there (see outputs). Firebase
+# issues the HTTPS certificate once those records exist.
+
+resource "google_firebase_hosting_custom_domain" "apex" {
+  provider = google-beta
+  project  = google_project.blog.project_id
+  site_id  = google_project.blog.project_id
+
+  custom_domain         = var.custom_domain
+  wait_dns_verification = false
+
+  depends_on = [google_firebase_project.blog]
+}
+
+resource "google_firebase_hosting_custom_domain" "www" {
+  provider = google-beta
+  project  = google_project.blog.project_id
+  site_id  = google_project.blog.project_id
+
+  custom_domain         = "www.${var.custom_domain}"
+  redirect_target       = var.custom_domain
+  wait_dns_verification = false
+
+  depends_on = [google_firebase_project.blog]
+}
+
 # --- GitHub Actions deploy access (Workload Identity Federation) -------------
 # No keys are created. GitHub proves who it is with a short-lived token, and
 # only the configured repository can act as the deployer service account.

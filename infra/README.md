@@ -67,6 +67,14 @@ Edit the `.tf` files, open a pull request (the `Infrastructure checks` workflow 
 
 ## Notes
 
-- To use a custom domain such as `tincanvista.com`, add it under Hosting in the Firebase console and set the DNS records it gives you.
+- The custom domain `tincanvista.com` (registered and hosted at GoDaddy) is declared in `main.tf`, with `www` redirecting to it. Terraform only tells Firebase about the domain. You still set the DNS records at GoDaddy:
+
+  | Type | Name | Value |
+  | --- | --- | --- |
+  | A | `@` | `199.36.158.100` (replace GoDaddy's parking A records) |
+  | TXT | `@` | `hosting-site=tin-can-vista-blog` |
+  | CNAME | `www` | `tin-can-vista-blog.web.app` (replace the existing `www` CNAME) |
+
+  Firebase then verifies the domain and issues the HTTPS certificate on its own, which can take from minutes to a few hours. Run `terraform apply -refresh-only` then `terraform output dns_apex` to see the current records Firebase expects.
 - The project has deletion protection by default. Removing it later means turning that off first.
 - The billing account `Fast Forward Google Cloud Billing Account` is at its limit of linked projects, which is why this project is unbilled.

@@ -13,6 +13,16 @@ output "deployer_service_account" {
   value       = google_service_account.deployer.email
 }
 
+output "dns_apex" {
+  description = "DNS records to add at the registrar for the bare domain."
+  value       = google_firebase_hosting_custom_domain.apex.required_dns_updates
+}
+
+output "dns_www" {
+  description = "DNS records to add at the registrar for www."
+  value       = google_firebase_hosting_custom_domain.www.required_dns_updates
+}
+
 output "site_url" {
   description = "Where the blog is served."
   value       = "https://${google_project.blog.project_id}.web.app"

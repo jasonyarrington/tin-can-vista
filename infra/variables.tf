@@ -34,6 +34,12 @@ variable "region" {
   default     = "us-central1"
 }
 
+variable "custom_domain" {
+  description = "Domain served by Hosting. www.<domain> redirects to it."
+  type        = string
+  default     = "tincanvista.com"
+}
+
 variable "github_repo" {
   description = "GitHub repository allowed to deploy, as OWNER/NAME."
   type        = string
