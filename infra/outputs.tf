@@ -13,6 +13,11 @@ output "deployer_service_account" {
   value       = google_service_account.deployer.email
 }
 
+output "state_bucket" {
+  description = "Bucket that holds Terraform state once backend.tf is added."
+  value       = google_storage_bucket.tfstate.name
+}
+
 output "site_url" {
   description = "Where the blog is served."
   value       = "https://${google_project.blog.project_id}.web.app"

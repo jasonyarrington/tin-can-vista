@@ -1,10 +1,11 @@
 # Infrastructure
 
-Terraform for the Google Cloud side of Tin Can Vista: a project, Firebase Hosting, and a keyless way for GitHub Actions to deploy.
+Terraform for the Google Cloud side of Tin Can Vista: a project, Firebase Hosting, a state bucket, and a keyless way for GitHub Actions to deploy.
 
 It creates:
 
 - A Google Cloud project with billing attached, and the APIs it needs.
+- A Cloud Storage bucket (`PROJECT_ID-tfstate`) that holds Terraform's own state.
 - Firebase on that project, which provides Hosting at `PROJECT_ID.web.app`.
 - A `github-deployer` service account that can only publish Hosting content.
 - A Workload Identity pool so that only your GitHub repository can act as that service account. No keys are created.
@@ -16,38 +17,49 @@ You need `gcloud`, `terraform`, and an account that can create projects and use 
 1. Sign in:
 
    ```bash
+   gcloud auth login
+   ```
+
+   ```bash
    gcloud auth application-default login
    ```
 
-2. Create a bucket to hold Terraform state. It must live in a project you already have, because the blog's project does not exist yet. Pick a globally unique name.
-
-   ```bash
-   gcloud storage buckets create gs://YOUR-STATE-BUCKET --project=EXISTING-PROJECT --location=us-central1 --uniform-bucket-level-access
-   ```
-
-   ```bash
-   gcloud storage buckets update gs://YOUR-STATE-BUCKET --versioning
-   ```
-
-3. Fill in your values:
+2. Fill in your values:
 
    ```bash
    cp terraform.tfvars.example terraform.tfvars
    ```
 
-   Set `billing_account` and `github_repo` (as `owner/name`). Change `project_id` if `tin-can-vista-blog` is taken.
+   Set `billing_account`, `org_id` (if you use an organization) and `github_repo` (as `owner/name`). Change `project_id` if `tin-can-vista-blog` is taken. `terraform.tfvars` is git-ignored.
 
-4. Create everything:
+3. First apply. State is kept on your machine this time, because the state bucket does not exist yet:
 
    ```bash
-   terraform init -backend-config="bucket=YOUR-STATE-BUCKET"
+   terraform init
    ```
 
    ```bash
    terraform apply
    ```
 
-5. In the GitHub repository, open Settings > Secrets and variables > Actions > Variables, and add three repository variables from the Terraform outputs:
+4. Move state into the new bucket. Create `infra/backend.tf` with the bucket name from the `state_bucket` output:
+
+   ```hcl
+   terraform {
+     backend "gcs" {
+       bucket = "tin-can-vista-blog-tfstate"
+       prefix = "terraform/state"
+     }
+   }
+   ```
+
+   ```bash
+   terraform init -migrate-state
+   ```
+
+   Answer yes. Commit `backend.tf`. You can then delete the local `terraform.tfstate` files.
+
+5. In the GitHub repository, open Settings > Secrets and variables > Actions > Variables, and add three repository variables from the Terraform outputs (or run `gh variable set`):
 
    | Variable | Terraform output |
    | --- | --- |
@@ -66,4 +78,5 @@ Edit the `.tf` files, open a pull request (the `Infrastructure checks` workflow 
 ## Notes
 
 - Firebase creates the default Hosting site at `PROJECT_ID.web.app` when Firebase is added to the project. If the first deploy says the site does not exist, create it in the Firebase console and re-run the workflow.
-- To use a custom domain, add it under Hosting in the Firebase console and set the DNS records it gives you.
+- To use a custom domain such as `tincanvista.com`, add it under Hosting in the Firebase console and set the DNS records it gives you.
+- The project has deletion protection by default. Removing it later means turning that off first.

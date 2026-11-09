@@ -12,11 +12,9 @@ terraform {
     }
   }
 
-  # State lives in a Cloud Storage bucket. The bucket name is passed at init time:
-  #   terraform init -backend-config="bucket=YOUR-STATE-BUCKET"
-  backend "gcs" {
-    prefix = "tin-can-vista"
-  }
+  # No backend here on purpose. The first apply keeps state locally and creates
+  # the state bucket. Then backend.tf is added to move state into that bucket.
+  # See README.md.
 }
 
 provider "google" {
