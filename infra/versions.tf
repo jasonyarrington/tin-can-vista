@@ -12,9 +12,9 @@ terraform {
     }
   }
 
-  # No backend here on purpose. The first apply keeps state locally and creates
-  # the state bucket. Then backend.tf is added to move state into that bucket.
-  # See README.md.
+  # State is kept locally (git-ignored) because the project has no billing, and
+  # Cloud Storage needs billing. If billing is added later, create a bucket and
+  # add a backend block. See README.md.
 }
 
 provider "google" {

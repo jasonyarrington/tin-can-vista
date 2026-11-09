@@ -11,8 +11,9 @@ variable "project_name" {
 }
 
 variable "billing_account" {
-  description = "Billing account ID to attach to the project, like 000000-AAAAAA-BBBBBB."
+  description = "Billing account ID to attach, like 000000-AAAAAA-BBBBBB. Leave null to stay on Firebase's free Spark plan (Hosting works without billing)."
   type        = string
+  default     = null
 }
 
 variable "org_id" {

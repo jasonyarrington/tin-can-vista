@@ -47,4 +47,5 @@ Rules:
 - Merge to `main`: build and deploy to Firebase Hosting.
 - GitHub Actions authenticates with Workload Identity Federation. There are no stored keys. It needs three repository variables: `GCP_PROJECT_ID`, `GCP_WORKLOAD_IDENTITY_PROVIDER`, `GCP_SERVICE_ACCOUNT` (Terraform outputs).
 - Google Cloud changes are made in `infra/` and applied by hand with `terraform apply`. Nothing about the hosting should exist only in a console.
-- No custom domain yet; the site is served at `PROJECT_ID.web.app`.
+- The Google Cloud project is `tin-can-vista-blog` (organization fastforward.sh), unbilled on Firebase's free Spark plan. Terraform state is local and git-ignored (`infra/terraform.tfstate`).
+- Live at https://tin-can-vista-blog.web.app. The planned custom domain is `tincanvista.com`; it is not connected yet.

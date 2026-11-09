@@ -6,7 +6,6 @@ locals {
     "iam.googleapis.com",
     "iamcredentials.googleapis.com",
     "serviceusage.googleapis.com",
-    "storage.googleapis.com",
     "sts.googleapis.com",
   ]
 }
@@ -27,24 +26,6 @@ resource "google_project_service" "enabled" {
   project            = google_project.blog.project_id
   service            = each.value
   disable_on_destroy = false
-}
-
-# --- Terraform state bucket --------------------------------------------------
-# Holds this configuration's own state once backend.tf is added (see README.md).
-
-resource "google_storage_bucket" "tfstate" {
-  project                     = google_project.blog.project_id
-  name                        = "${var.project_id}-tfstate"
-  location                    = var.region
-  uniform_bucket_level_access = true
-  public_access_prevention    = "enforced"
-  force_destroy               = false
-
-  versioning {
-    enabled = true
-  }
-
-  depends_on = [google_project_service.enabled]
 }
 
 # --- Firebase Hosting --------------------------------------------------------

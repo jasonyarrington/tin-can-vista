@@ -1,8 +1,8 @@
 # Copy to terraform.tfvars (git-ignored) and fill in.
-billing_account = "000000-AAAAAA-BBBBBB"
-github_repo     = "your-github-user/tin-can-vista"
+github_repo = "your-github-user/tin-can-vista"
 
 # Optional
-# project_id = "tin-can-vista-blog"   # must be globally unique
-# org_id     = "123456789012"
-# folder_id  = "123456789012"
+# project_id      = "tin-can-vista-blog"   # must be globally unique
+# org_id          = "123456789012"
+# folder_id       = "123456789012"
+# billing_account = "000000-AAAAAA-BBBBBB" # leave unset for Firebase's free Spark plan
